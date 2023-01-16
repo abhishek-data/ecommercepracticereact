@@ -1,3 +1,4 @@
+import { Button } from "react-bootstrap";
 
 const ProductList = (props) => {
   const productsArr = [
@@ -40,13 +41,13 @@ const ProductList = (props) => {
 
   return (
     <div>
-      {productsArr.map((item) => {
+      {productsArr.map((item, index) => {
         return (
-          <div>
-            <p>{item.title}</p>
+          <div className="text-center mx-auto" key={index}>
+            <p>Album {index+1}</p>
             <img src={item.imageUrl} alt="productImage" />
             <p>{`$${item.price}`}</p>
-            <button>Add To Cart</button>
+            <Button>Add To Cart</Button>
           </div>
         );
       })}
