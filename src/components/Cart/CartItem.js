@@ -1,22 +1,23 @@
 import React from "react";
+import { Col, Row } from "react-bootstrap";
 
 import "./CartItem.css";
 
 const CartItem = (props) => {
   const price = props.item.price.toFixed(2);
   return (
-    <div className="cartRow">
-      <span className="cartItem cartColumn">
+    <Row className="justify-content-between">
+      <Col className="cartItem cartColumn">
         <img className="cartImg" src={props.item.imageUrl} alt="cartimage" />
-      </span>
-      <span className="cartPrice cartColumn">
+      </Col>
+      <Col className="cartPrice cartColumn">
         {price}
-        <button className="button">{props.item.quantity}</button>
-      </span>
-      <span className="cartQuantity cartColumn">
+        <button className="button">{1}</button>
+      </Col>
+      <Col className="cartQuantity cartColumn">
         <button className="cartQuantityButton" onClick={() => props.onRemoveCart(props.item.title)}>remove</button>
-      </span>
-    </div>
+      </Col>
+    </Row>
   );
 };
 

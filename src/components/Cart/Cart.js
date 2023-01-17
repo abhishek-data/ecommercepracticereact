@@ -1,53 +1,11 @@
 import Modal from "../UI/Modal";
 import CartItem from "./CartItem";
 import { CloseButton, Button } from "react-bootstrap";
-import { useState } from "react";
+import { useContext} from "react";
+import CartContext from "../../store/cart-context";
 
 const Cart = (props) => {
-  
-  const cartElements = [
-    {
-      title: "Colors",
-
-      price: 100,
-
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
-
-      quantity: 2,
-    },
-
-    {
-      title: "Black and white Colors",
-
-      price: 50,
-
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-
-      quantity: 3,
-    },
-
-    {
-      title: "Yellow and Black Colors",
-
-      price: 70,
-
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-
-      quantity: 1,
-    },
-  ];
-
-  const [filteredItem, setFilteredItem] = useState(cartElements)
-  const removeItemHandler = (id) => {
-    setFilteredItem(
-      cartElements.filter((item) => item.title != id)
-    )
-    
-  }
-  const total = cartElements.reduce((total, item) => (total + item.price*item.quantity), 0)
+  const cartCtx = useContext(CartContext)
 
   return (
     <Modal>
@@ -59,8 +17,12 @@ const Cart = (props) => {
         <span className="cartQuantity cartColumn">QUANTITY</span>
       </div>
       <div>
-        {filteredItem.map((item) => (
-          <CartItem key={item.title} item={item} onRemoveCart={removeItemHandler}/>
+        {cartCtx.items.map((item) => (
+          <CartItem
+            key={item.title}
+            item={item}
+            onRemoveCart={cartCtx.removeItem}
+          />
         ))}
       </div>
       <div className="cartTotal">
@@ -68,7 +30,7 @@ const Cart = (props) => {
           <span className="totalTitle">
             <strong>Total</strong>
           </span>
-          $<span>{total}</span>
+          $<span>{cartCtx.totalAmount}</span>
         </span>
       </div>
       <Button>Purchase</Button>

@@ -3,23 +3,24 @@ import Cart from "./components/Cart/Cart";
 import Footer from "./components/Layout/Footer";
 import Header from "./components/Layout/Header";
 import ProductList from "./components/Product/ProductList";
+import CartProvider from "./store/CartProvider";
 
 const App = () => {
-  const [openCart, setOpenCart] = useState(false)
+  const [openCart, setOpenCart] = useState(false);
 
   const openCartHandler = () => {
-    setOpenCart(true)
-  }
+    setOpenCart(true);
+  };
   const closeCartHandler = () => {
-    setOpenCart(false)
-  }
+    setOpenCart(false);
+  };
   return (
-    <>
-      <Header onOpenCart={openCartHandler}/>
+    <CartProvider>
+      <Header onOpenCart={openCartHandler} />
       <ProductList />
-      <Footer/>
-      {openCart && <Cart onCloseCart={closeCartHandler}/>}
-    </>
+      <Footer />
+      {openCart && <Cart onCloseCart={closeCartHandler} />}
+    </CartProvider>
   );
 };
 
