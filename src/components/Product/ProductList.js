@@ -51,7 +51,7 @@ const ProductList = (props) => {
             <p>Album {index+1}</p>
             <img src={item.imageUrl} alt="productImage" />
             <p>{`$${item.price}`}</p>
-            <Button onClick={() => ctx.addItem(item)}>Add To Cart</Button>
+            <Button onClick={() => ctx.addItem({...item, quantity: 1})}>Add To Cart</Button>
           </div>
         );
       })}

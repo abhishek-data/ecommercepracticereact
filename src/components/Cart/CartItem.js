@@ -12,7 +12,7 @@ const CartItem = (props) => {
       </Col>
       <Col className="cartPrice cartColumn">
         {price}
-        <button className="button">{1}</button>
+        <button className="button">{props.item.quantity}</button>
       </Col>
       <Col className="cartQuantity cartColumn">
         <button className="cartQuantityButton" onClick={() => props.onRemoveCart(props.item.title)}>remove</button>

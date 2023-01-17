@@ -6,7 +6,18 @@ const CartProvider = (props) => {
 
   const addToCartHandler = (item) => {
     
-    setCartItem([...cartItem, item]);
+    const existingCartItemIndex = cartItem.findIndex((element) => element.title === item.title )
+    const existingCartItem = cartItem[existingCartItemIndex]
+    if(existingCartItem){
+      const updatedCartItem = {...existingCartItem, quantity: existingCartItem.quantity+1}
+      const updatedItem = [...cartItem]
+      updatedItem[existingCartItemIndex] = updatedCartItem
+      setCartItem(updatedItem)
+    }
+    else{
+      setCartItem([...cartItem, item])
+    }
+    
   };
 
   const removeItemHandler = (id) => {
@@ -14,7 +25,7 @@ const CartProvider = (props) => {
         cartItem.filter((item) => id !==item.title )
     )
   }
-  const total = cartItem.reduce((total, item) => (total + item.price),0)
+  const total = cartItem.reduce((total, item) => (total + item.price*item.quantity),0)
   const cartContext = {
     items: cartItem,
     totalAmount: total,
