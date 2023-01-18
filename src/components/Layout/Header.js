@@ -13,6 +13,7 @@ const Header = (props) => {
           <NavLink to="/home">Home</NavLink>
           <NavLink to="/store">Store</NavLink>
           <NavLink to="/about">About</NavLink>
+          <NavLink to="/contact">Contact us</NavLink>
           <Button onClick={props.onOpenCart}>Cart</Button>
           <span>{ctx.items.length}</span>
         </Container>

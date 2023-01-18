@@ -4,6 +4,7 @@ import Cart from "./components/Cart/Cart";
 import Footer from "./components/Layout/Footer";
 import Header from "./components/Layout/Header";
 import About from "./components/pages/About";
+import Contact from "./components/pages/Contact";
 import Home from "./components/pages/Home";
 import ProductList from "./components/Product/ProductList";
 import CartProvider from "./store/CartProvider";
@@ -18,17 +19,13 @@ const App = () => {
     setOpenCart(false);
   };
   return (
-    <>
-      <CartProvider>
-        <Header onOpenCart={openCartHandler} />
-      </CartProvider>
+    <CartProvider>
+      <Header onOpenCart={openCartHandler} />
 
       <Route path="/store">
-        <CartProvider>
-          <ProductList />
-          <Footer />
-          {openCart && <Cart onCloseCart={closeCartHandler} />}
-        </CartProvider>
+        <ProductList />
+        <Footer />
+        {openCart && <Cart onCloseCart={closeCartHandler} />}
       </Route>
       <Route path="/about">
         <About />
@@ -36,7 +33,10 @@ const App = () => {
       <Route path="/home">
         <Home />
       </Route>
-    </>
+      <Route path="/contact">
+        <Contact/>
+      </Route>
+    </CartProvider>
   );
 };
 
