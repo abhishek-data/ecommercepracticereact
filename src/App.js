@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Route } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import Cart from "./components/Cart/Cart";
 import Footer from "./components/Layout/Footer";
 import Header from "./components/Layout/Header";
 import About from "./components/pages/About";
 import Contact from "./components/pages/Contact";
 import Home from "./components/pages/Home";
+import ProductDetail from "./components/pages/ProductDetail";
 import ProductList from "./components/Product/ProductList";
 import CartProvider from "./store/CartProvider";
 
@@ -21,21 +22,28 @@ const App = () => {
   return (
     <CartProvider>
       <Header onOpenCart={openCartHandler} />
-
-      <Route path="/store">
-        <ProductList />
-        <Footer />
-        {openCart && <Cart onCloseCart={closeCartHandler} />}
-      </Route>
-      <Route path="/about">
-        <About />
-      </Route>
-      <Route path="/home">
-        <Home />
-      </Route>
-      <Route path="/contact">
-        <Contact/>
-      </Route>
+      <Switch>
+        <Route path="/" exact>
+          <Redirect to="/store"/>
+        </Route>
+        <Route path="/store" exact>
+          <ProductList />
+          <Footer />
+          {openCart && <Cart onCloseCart={closeCartHandler} />}
+        </Route>
+        <Route path="/about">
+          <About />
+        </Route>
+        <Route path="/home">
+          <Home />
+        </Route>
+        <Route path="/contact">
+          <Contact />
+        </Route>
+        <Route path="/store/:productId">
+          <ProductDetail />
+        </Route>
+      </Switch>
     </CartProvider>
   );
 };

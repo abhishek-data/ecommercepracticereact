@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import CartContext from "../../store/cart-context";
 
 const ProductList = (props) => {
@@ -41,17 +42,22 @@ const ProductList = (props) => {
     },
   ];
 
-  const ctx = useContext(CartContext)
+  const ctx = useContext(CartContext);
 
   return (
     <div>
       {productsArr.map((item, index) => {
         return (
           <div className="text-center mx-auto" key={index}>
-            <p>Album {index+1}</p>
-            <img src={item.imageUrl} alt="productImage" />
+            <p>Album {index + 1}</p>
+            <Link to='/store/p1'>
+              <img src={item.imageUrl} alt="productImage" />
+            </Link>
+
             <p>{`$${item.price}`}</p>
-            <Button onClick={() => ctx.addItem({...item, quantity: 1})}>Add To Cart</Button>
+            <Button onClick={() => ctx.addItem({ ...item, quantity: 1 })}>
+              Add To Cart
+            </Button>
           </div>
         );
       })}

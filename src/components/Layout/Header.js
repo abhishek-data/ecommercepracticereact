@@ -8,14 +8,23 @@ const Header = (props) => {
   const ctx = useContext(CartContext);
   return (
     <div>
-      <Navbar expand="lg" className="text-white bg-dark justify-content-center" fixed="top">
+      <Navbar expand="lg" className={classes.header} fixed="top">
         <Container>
-          <NavLink to="/home">Home</NavLink>
-          <NavLink to="/store">Store</NavLink>
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/contact">Contact us</NavLink>
-          <Button onClick={props.onOpenCart}>Cart</Button>
-          <span>{ctx.items.length}</span>
+          <NavLink activeClassName={classes.active} to="/home">
+            Home
+          </NavLink>
+          <NavLink activeClassName={classes.active} to="/store">
+            Store
+          </NavLink>
+          <NavLink activeClassName={classes.active} to="/about">
+            About
+          </NavLink>
+          <NavLink activeClassName={classes.active} to="/contact">
+            Contact us
+          </NavLink>
+          <Button onClick={props.onOpenCart}>
+            Cart<sup>{ctx.items.length > 0?ctx.items.length:''}</sup>
+          </Button>
         </Container>
       </Navbar>
       <div className="container">
