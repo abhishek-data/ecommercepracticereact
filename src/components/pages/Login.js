@@ -19,7 +19,7 @@ const Login = () => {
 
     const enteredEmail = emailRef.current.value;
     const enteredPassword = passwordRef.current.value;
-
+    cartCtx.userIndentifier(enteredEmail)
     setIsLoading(true);
 
 

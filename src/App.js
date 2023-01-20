@@ -18,6 +18,7 @@ const App = () => {
   const cartCtx = useContext(CartContext);
   
   const openCartHandler = () => {
+    cartCtx.cartAccess()
     setOpenCart(true);
   };
   const closeCartHandler = () => {
