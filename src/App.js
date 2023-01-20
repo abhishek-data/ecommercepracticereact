@@ -6,6 +6,7 @@ import Header from "./components/Layout/Header";
 import About from "./components/pages/About";
 import Contact from "./components/pages/Contact";
 import Home from "./components/pages/Home";
+import Login from "./components/pages/Login";
 import ProductDetail from "./components/pages/ProductDetail";
 import ProductList from "./components/Product/ProductList";
 import CartProvider from "./store/CartProvider";
@@ -42,6 +43,9 @@ const App = () => {
         </Route>
         <Route path="/store/:productId">
           <ProductDetail />
+        </Route>
+        <Route path="/login">
+          <Login />
         </Route>
       </Switch>
     </CartProvider>

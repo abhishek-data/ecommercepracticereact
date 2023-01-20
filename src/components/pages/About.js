@@ -3,22 +3,26 @@ const About = () => {
     <div>
       <h1>About</h1>
       <p>
-        Lorem ipsum carrots enhanced rebates. Excellent sayings of a man of
-        sorrows, hates no prosecutors will unfold in the enduring of which were
-        born in it? Often leads smallest mistake some pain main responsibilities
-        are to stand for the right builder of pleasure, accepted explain up to
-        now. , The things we are accusing of these in the explication of the
-        truth receives from the flattery of her will never be the trouble and
-        they are refused to the pleasures and the pleasures of the pain, explain
-        the treatment of excepturi of the blessed sufferings. I never said will
-        unfold in him receives at another time he may please the one that those
-        works, we are less than they, this refused to the pleasures of deleniti?
-        Those are! Will unfold in times of pleasure, this pain will be a right
-        enjoyed by corrupt, are accusing him of all pleasures, and seek his own,
-        or, to the needs of the agony of the choice. We hate the fellow. Lorem
-        ipsum dolor, sit amet consectetur rebates. The distinction, that arise
-        from or to. The greater, therefore, an obstacle to the duties of the
-        debts receives the very
+        Indian Ocean are the biggest underground success in India. A cult band
+        in its own right, the group has amalgamated Indian folk music with
+        Western rock, the bandmembers denying any limitations to their personal
+        craft that might arise due to the demands of hitting the mainstream.
+        Indian Ocean have been savored by their listeners, and their small yet
+        perfect body of work has made the experience of their music totally
+        delicious. Indian Ocean started in 1984 as an instrumental duo with
+        Susmit Sen on guitars and Asheem Chakravarty on percussion. In 1991,
+        Rahul Ram joined on bass and the band secured its first record deal.
+        Their self-titled album debut was released in 1994 with Shaleen Sharma
+        on drums. In the same year Amit Kilam replaced Shaleen and the present
+        lineup was formed. In 1997, Indian Ocean released Desert Rain, an album
+        recorded live at Mandi House, Delhi. Desert Rain quickly gained
+        appreciation in critics' circles, and the band secured its second record
+        deal. Kandisa, released in March 2000, catapulted Indian Ocean to
+        national stardom and became one of the biggest-selling albums ever by an
+        Indian band. After the group actively toured for the next three years
+        around the world, Jhini was released in 2003 along with Indian Ocean's
+        first music video. Black Friday, a movie soundtrack, was released in
+        2005.
       </p>
     </div>
   );

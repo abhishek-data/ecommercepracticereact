@@ -1,20 +1,21 @@
 import Modal from "../UI/Modal";
 import CartItem from "./CartItem";
 import { CloseButton, Button } from "react-bootstrap";
-import { useContext} from "react";
+import { useContext } from "react";
 import CartContext from "../../store/cart-context";
+import "./CartItem.css";
 
 const Cart = (props) => {
-  const cartCtx = useContext(CartContext)
+  const cartCtx = useContext(CartContext);
 
   return (
     <Modal>
       <CloseButton onClick={props.onCloseCart} />
       <h5 className="heading">CART</h5>
-      <div className="cartHeader cartRow">
-        <span className="cartItem cartColumn">ITEM</span>
-        <span className="cartPrice cartColumn">PRICE</span>
-        <span className="cartQuantity cartColumn">QUANTITY</span>
+      <div class="cart-row">
+        <span class="cart-item cart-header cart-column">ITEM</span>
+        <span class="cart-price cart-header cart-column">PRICE</span>
+        <span class="cart-quantity cart-header cart-column">QUANTITY</span>
       </div>
       <div>
         {cartCtx.items.map((item) => (
@@ -30,7 +31,7 @@ const Cart = (props) => {
           <span className="totalTitle">
             <strong>Total</strong>
           </span>
-          $<span>{cartCtx.totalAmount}</span>
+          ₹<span>{cartCtx.totalAmount}</span>
         </span>
       </div>
       <Button>Purchase</Button>

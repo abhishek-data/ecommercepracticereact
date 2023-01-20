@@ -54,7 +54,7 @@ const ProductList = (props) => {
               <img src={item.imageUrl} alt="productImage" />
             </Link>
 
-            <p>{`$${item.price}`}</p>
+            <p>{`₹${item.price}`}</p>
             <Button onClick={() => ctx.addItem({ ...item, quantity: 1 })}>
               Add To Cart
             </Button>

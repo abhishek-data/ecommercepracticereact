@@ -3,8 +3,9 @@ import CartContext from "./cart-context";
 
 const CartProvider = (props) => {
   const [cartItem, setCartItem] = useState([]);
-
+  const [token, setToken] = useState(null)
   const addToCartHandler = (item) => {
+    
     
     const existingCartItemIndex = cartItem.findIndex((element) => element.title === item.title )
     const existingCartItem = cartItem[existingCartItemIndex]
@@ -26,11 +27,19 @@ const CartProvider = (props) => {
     )
   }
   const total = cartItem.reduce((total, item) => (total + item.price*item.quantity),0)
+
+  const loginHandler = (token) => {
+    setToken(token)
+    localStorage.setItem('token', token);
+    
+  };
+
   const cartContext = {
     items: cartItem,
     totalAmount: total,
     addItem: addToCartHandler,
-    removeItem: removeItemHandler
+    removeItem: removeItemHandler,
+    login: loginHandler
   }
   return (
     <CartContext.Provider value={cartContext}>{props.children}</CartContext.Provider>

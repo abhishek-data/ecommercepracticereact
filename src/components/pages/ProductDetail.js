@@ -1,4 +1,6 @@
 import { useParams } from "react-router-dom";
+import album1 from '../../Image/Album1.png'
+import album2 from '../../Image/Album2.png'
 
 const ProductDetail = () => {
   const params = useParams();
@@ -10,7 +12,7 @@ const ProductDetail = () => {
       <ul>
         <li>
           <img
-            src="https://prasadyash2411.github.io/ecom-website/img/Album%201.png"
+            src={album1}
             alt="product"
           />
 
@@ -18,7 +20,7 @@ const ProductDetail = () => {
         </li>
         <li>
           <img
-            src="https://prasadyash2411.github.io/ecom-website/img/Album%201.png"
+            src={album2}
             alt="product"
           />
         </li>

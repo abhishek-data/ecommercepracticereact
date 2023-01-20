@@ -19,6 +19,9 @@ const Header = (props) => {
           <NavLink activeClassName={classes.active} to="/about">
             About
           </NavLink>
+          <NavLink activeClassName={classes.active} to="/login">
+            Login
+          </NavLink>
           <NavLink activeClassName={classes.active} to="/contact">
             Contact us
           </NavLink>
@@ -33,7 +36,7 @@ const Header = (props) => {
             className={classes.bigblue}
             style={{ height: "150px", fontSize: "100px" }}
           >
-            The Generics
+            Indian Ocean
           </Card.Title>
         </Card>
       </div>
