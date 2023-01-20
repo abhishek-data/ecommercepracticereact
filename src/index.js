@@ -8,10 +8,13 @@ import App from "./App";
 */
 import "../node_modules/react-bootstrap/dist/react-bootstrap";
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
+import CartProvider from "./store/CartProvider";
 
 const root = ReactDom.createRoot(document.getElementById("root"));
 root.render(
+  <CartProvider>
   <BrowserRouter>
     <App />
   </BrowserRouter>
+  </CartProvider>
 );

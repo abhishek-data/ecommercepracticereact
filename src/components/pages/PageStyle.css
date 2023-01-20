@@ -101,6 +101,10 @@ html, body {
     background-color: #6e2020;;
     color: white;
     padding: .25em 0;
+    position: fixed;
+    left:0;
+    bottom:0;
+    right:0;
 }
 
 .main-footer-container {

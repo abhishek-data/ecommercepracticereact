@@ -6,11 +6,13 @@ import classes from "./Login.module.css";
 
 const Login = () => {
   const history = useHistory();
-  const [isLogin, setIsLogin] = useState(true);
+  
   const [isLoading, setIsLoading] = useState(false);
+  
   const emailRef = useRef();
   const passwordRef = useRef();
   const cartCtx = useContext(CartContext);
+ 
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -46,6 +48,7 @@ const Login = () => {
       .then((data) => {
         cartCtx.login(data.idToken);
         history.replace("/store");
+        
       })
       .catch((err) => {
         alert(err.message);
