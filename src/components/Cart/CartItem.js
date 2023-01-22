@@ -5,6 +5,9 @@ import "./CartItem.css";
 
 const CartItem = (props) => {
   const price = props.item.price.toFixed(2);
+  console.log(props.item._id)
+  console.log(props.item)
+  console.log(props.item.title)
   return (
     <Row className="justify-content-between">
       <Col className="cartItem cartColumn">
@@ -15,7 +18,7 @@ const CartItem = (props) => {
         <button className="button">{props.item.quantity}</button>
       </Col>
       <Col className="cartQuantity cartColumn">
-        <button className="cartQuantityButton" onClick={() => props.onRemoveCart(props.item.title)}>remove</button>
+        <button className="cartQuantityButton" onClick={() => props.onRemoveCart(props.item._id)}>remove</button>
       </Col>
     </Row>
   );

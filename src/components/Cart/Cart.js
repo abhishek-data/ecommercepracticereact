@@ -21,7 +21,7 @@ const Cart = (props) => {
       <div>
         {cartCtx.items.map((item) => (
           <CartItem
-            key={item.title}
+            key={item._id}
             item={item}
             onRemoveCart={cartCtx.removeItem}
           />

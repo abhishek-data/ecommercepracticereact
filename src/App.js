@@ -1,5 +1,5 @@
-import React, { Fragment, useContext, useState } from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
+import React, { Fragment, useCallback, useContext, useEffect, useState } from "react";
+import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 import Cart from "./components/Cart/Cart";
 import Footer from "./components/Layout/Footer";
 import Header from "./components/Layout/Header";
@@ -14,24 +14,39 @@ import CartContext from "./store/cart-context";
 
 const App = () => {
   const [openCart, setOpenCart] = useState(false);
-
-  const cartCtx = useContext(CartContext);
+  const history = useHistory()
+  const {isLoggedIn, cartAccess} = useContext(CartContext);
+  console.log(isLoggedIn)
   
-  const openCartHandler = () => {
-    cartCtx.cartAccess()
-    setOpenCart(true);
-  };
+  const openCartHandler = useCallback(() => {
+    if(isLoggedIn){
+    cartAccess()
+    setOpenCart(true)};
+  },[cartAccess, isLoggedIn]);
+
   const closeCartHandler = () => {
     setOpenCart(false);
   };
+  useEffect(() => {
+    if(!isLoggedIn){
+      setOpenCart(false)
+    }
+  },[isLoggedIn])
+
+  useEffect(() => {
+    if(isLoggedIn){
+      history.replace('/store')
+    }
+  },[isLoggedIn, history])
+
   return (
     <Fragment>
       <Header onOpenCart={openCartHandler} />
       {openCart && <Cart onCloseCart={closeCartHandler} />}
       <Switch>
         <Route path="/store">
-          {cartCtx.isLoggedIn && <ProductList />}
-          {!cartCtx.isLoggedIn && <Redirect to="/login" />}
+          {isLoggedIn && <ProductList />}
+          {!isLoggedIn && <Redirect to="/login" />}
         </Route>
 
         <Route path="/about">
@@ -46,7 +61,7 @@ const App = () => {
         <Route path="/store/:productId">
           <ProductDetail />
         </Route>
-        {!cartCtx.isLoggedIn && (
+        {!isLoggedIn && (
           <Route path="/login">
             <Login />
           </Route>

@@ -19,9 +19,10 @@ const Header = (props) => {
           <NavLink activeClassName={classes.active} to="/about">
             About
           </NavLink>
-          <NavLink activeClassName={classes.active} to="/login">
+          {!ctx.isLoggedIn && <NavLink activeClassName={classes.active} to="/store">
             Login
-          </NavLink>
+          </NavLink>}
+          {ctx.isLoggedIn && <button  onClick={ctx.logout}>Logout</button>}
           <NavLink activeClassName={classes.active} to="/contact">
             Contact us
           </NavLink>

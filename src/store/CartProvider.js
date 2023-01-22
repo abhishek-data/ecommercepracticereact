@@ -1,22 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CartContext from "./cart-context";
 import axios from "axios";
 
 const CartProvider = (props) => {
   const [cartItem, setCartItem] = useState([]);
-  const [token, setToken] = useState(null);
-  const [userEmail, setUserEmail] = useState('')
 
-  const userIsLoggedIn = !!token;
+  const [userEmail, setUserEmail] = useState("");
+  
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  
-  const userEmailHandler = (email) =>{
-    const newUserEmail = email.replace('@', '').replace('.', '')
-    setUserEmail(newUserEmail)
-  }
-  
-  console.log(userEmail)
-  const addToCartHandler = (item) => {
+  const APIKEY = '952af32feda64b4cb69b4128d047bc1c'
+
+  useEffect(() => {
+    const loginToken = localStorage.getItem("token");
+    const email = localStorage.getItem("email");
+    if (loginToken && email) {
+      setIsLoggedIn(true);
+      setUserEmail(email);
+    }
+  }, [isLoggedIn, userEmail]);
+
+  const userEmailHandler = (email) => {
+    const newUserEmail = email.replace("@", "").replace(".", "");
+    setUserEmail(newUserEmail);
+    localStorage.setItem("email", newUserEmail);
+  };
+
+  console.log(userEmail);
+
+  const addToCartHandler = async(item) => {
     // const existingCartItemIndex = cartItem.findIndex(
     //   (element) => element.title === item.title
     // );
@@ -31,26 +43,35 @@ const CartProvider = (props) => {
     //   updatedItem = [...cartItem];
     //   updatedItem[existingCartItemIndex] = updatedCartItem;
     //   setCartItem(updatedItem);
-      
+
     // } else {
     //   updatedItem = [...cartItem, item];
     //   setCartItem(updatedItem);
     // }
-    axios.post(`https://crudcrud.com/api/9a3f4c6afba34c0d852e88988f0af570/${userEmail}`,item)
+    await axios.post(
+      `https://crudcrud.com/api/${APIKEY}/${userEmail}`,
+      item
+    );
+    acessesCartHandler()  
   };
 
-  const acessesCartHandler = () =>{
-    axios.get(`https://crudcrud.com/api/9a3f4c6afba34c0d852e88988f0af570/${userEmail}`)
-    .then(res => {
-      setCartItem(res.data)
-      console.log(res.data)
+  const acessesCartHandler = async() => {
+    const response = await axios
+      .get(
+        `https://crudcrud.com/api/${APIKEY}/${userEmail}`
+      )
+    const data = await response.data  
+    setCartItem(data);
+    console.log(data);
+      
+  };
 
-    })
-  }
-
-
+  
   const removeItemHandler = (id) => {
-    setCartItem(cartItem.filter((item) => id !== item.title));
+    setCartItem(cartItem.filter((item) => id !== item._id));
+    axios.delete(
+      `https://crudcrud.com/api/${APIKEY}/${userEmail}/${id}`
+    );
   };
   const total = cartItem.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -58,9 +79,14 @@ const CartProvider = (props) => {
   );
 
   const loginHandler = (token) => {
-    setToken(token);
-
+    setIsLoggedIn(true);
     localStorage.setItem("token", token);
+  };
+
+  const logoutHandler = () => {
+    localStorage.removeItem("token");
+    setCartItem([])
+    setIsLoggedIn(false);
   };
 
   const contextData = {
@@ -69,9 +95,10 @@ const CartProvider = (props) => {
     addItem: addToCartHandler,
     removeItem: removeItemHandler,
     login: loginHandler,
-    isLoggedIn: userIsLoggedIn,
+    isLoggedIn: isLoggedIn,
     userIndentifier: userEmailHandler,
-    cartAccess: acessesCartHandler
+    cartAccess: acessesCartHandler,
+    logout: logoutHandler,
   };
   return (
     <CartContext.Provider value={contextData}>
