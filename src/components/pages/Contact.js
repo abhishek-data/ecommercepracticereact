@@ -20,7 +20,7 @@ const Contact = () => {
       headers: {
         "content-Type": "application/json",
       },
-    });
+    }).then(alert("Thank you for contacting us, we will reach you shortly."))
     nameRef.current.value = ''
     emailRef.current.value = ''
     phoneRef.current.value = ''

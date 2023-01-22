@@ -1,10 +1,13 @@
-.bigblue {
+.headerText {
     text-align: center;
     margin:0;
     padding:46px;
     padding-bottom:30px;
     background:rgb(164, 82, 82);
     color:white;
+    display: flex;
+    height: 150px;
+    font-size: 100px;
   }
 
   .header {

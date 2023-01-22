@@ -34,7 +34,7 @@ const Header = (props) => {
       <div className="container">
         <Card className="mt-3">
           <Card.Title
-            className={classes.bigblue}
+            className={classes.headerText}
             style={{ height: "150px", fontSize: "100px" }}
           >
             Indian Ocean
