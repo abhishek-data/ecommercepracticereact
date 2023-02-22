@@ -11,7 +11,7 @@ import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 import Footer from "./components/Layout/Footer";
 import Header from "./components/Layout/Header";
 
-import Login from "./components/pages/Login";
+import Login from "./components/pages/Auth/Login";
 
 import LoadingSpinner from "./components/UI/LoadingSpinner";
 import CartContext from "./store/cart-context";

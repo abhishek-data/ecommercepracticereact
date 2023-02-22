@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import CartContext from "../../store/cart-context";
+import classes from './ProductList.module.css'
 
 const ProductList = (props) => {
   const productsArr = [
@@ -39,16 +40,16 @@ const ProductList = (props) => {
 
       imageUrl:
         "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
-    },
+    }
   ];
 
   const ctx = useContext(CartContext);
 
   return (
-    <div>
+    <div className={classes.product}>
       {productsArr.map((item, index) => {
         return (
-          <div className="text-center mx-auto" key={index}>
+          <div className={classes.item} key={index}>
             <p>Album {index + 1}</p>
             <Link to='/store/p1'>
               <img src={item.imageUrl} alt="productImage" />

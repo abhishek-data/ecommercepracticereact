@@ -9,7 +9,7 @@ const CartProvider = (props) => {
   
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const APIKEY = '952af32feda64b4cb69b4128d047bc1c'
+  const APIKEY = 'e23c5e9056fe4f3d8d2c96787602baed'
 
   useEffect(() => {
     const loginToken = localStorage.getItem("token");
@@ -26,32 +26,29 @@ const CartProvider = (props) => {
     localStorage.setItem("email", newUserEmail);
   };
 
-  console.log(userEmail);
 
   const addToCartHandler = async(item) => {
-    // const existingCartItemIndex = cartItem.findIndex(
-    //   (element) => element.title === item.title
-    // );
-    // const existingCartItem = cartItem[existingCartItemIndex];
-
-    // let updatedItem;
-    // if (existingCartItem) {
-    //   const updatedCartItem = {
-    //     ...existingCartItem,
-    //     quantity: existingCartItem.quantity + 1,
-    //   };
-    //   updatedItem = [...cartItem];
-    //   updatedItem[existingCartItemIndex] = updatedCartItem;
-    //   setCartItem(updatedItem);
-
-    // } else {
-    //   updatedItem = [...cartItem, item];
-    //   setCartItem(updatedItem);
-    // }
-    await axios.post(
-      `https://crudcrud.com/api/${APIKEY}/${userEmail}`,
-      item
+    console.log(item, item['_id'])
+    const existingCartItemIndex = cartItem.findIndex(
+      (element) => element.title === item.title
     );
+
+    if(existingCartItemIndex >=0) {
+      const existingCartItem = cartItem[existingCartItemIndex]
+      const id = existingCartItem._id
+      const updatedCart = {...item, quantity: existingCartItem.quantity+1}
+      await axios.put(
+        `https://crudcrud.com/api/${APIKEY}/${userEmail}/${id}`,
+        updatedCart
+      );
+      console.log('hello')
+    }else{
+      console.log('hi')
+      await axios.post(
+        `https://crudcrud.com/api/${APIKEY}/${userEmail}`,
+        item
+      );
+    }
     acessesCartHandler()  
   };
 
@@ -62,7 +59,6 @@ const CartProvider = (props) => {
       )
     const data = await response.data  
     setCartItem(data);
-    console.log(data);
       
   };
 

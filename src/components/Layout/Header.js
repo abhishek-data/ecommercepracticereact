@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Container, Navbar, Button, Card } from "react-bootstrap";
+import { Container, Navbar, Button} from "react-bootstrap";
 import classes from "./Header.module.css";
 import CartContext from "../../store/cart-context";
 import { NavLink } from "react-router-dom";
@@ -31,15 +31,8 @@ const Header = (props) => {
           </Button>
         </Container>
       </Navbar>
-      <div className="container">
-        <Card className="mt-3">
-          <Card.Title
-            className={classes.headerText}
-            style={{ height: "150px", fontSize: "100px" }}
-          >
-            Indian Ocean
-          </Card.Title>
-        </Card>
+      <div className={classes.heading}>
+        <h1>Indian Ocean</h1>
       </div>
     </div>
   );

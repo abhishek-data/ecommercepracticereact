@@ -1,0 +1,19 @@
+.product {
+  max-width: 60%;
+  margin-left: 40vh;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.item {
+  border: 0.2px solid rgb(210, 164, 164);
+  border-radius: 10px;
+  padding: 2px;
+  margin: 5px;
+}
+
+/* className="text-center mx-auto" */

@@ -1,5 +1,5 @@
 import { useContext, useRef, useState } from "react";
-import CartContext from "../../store/cart-context";
+import CartContext from "../../../store/cart-context";
 import { useHistory } from "react-router-dom";
 
 import classes from "./Login.module.css";
