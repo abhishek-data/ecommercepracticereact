@@ -1,6 +1,6 @@
 .product {
-  max-width: 60%;
-  margin-left: 40vh;
+  margin: 20px auto;
+  width: 60%;
   text-align: center;
   display: flex;
   justify-content: space-around;
