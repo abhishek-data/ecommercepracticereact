@@ -15,7 +15,7 @@ import Login from "./components/pages/Auth/Login";
 
 import LoadingSpinner from "./components/UI/LoadingSpinner";
 import CartContext from "./store/cart-context";
-const Cart = React.lazy(() => import("./components/Cart/Cart"))
+const Cart = React.lazy(() => import("./components/Cart/Cart"));
 const About = React.lazy(() => import("./components/pages/About"));
 const Contact = React.lazy(() => import("./components/pages/Contact"));
 const Home = React.lazy(() => import("./components/pages/Home"));
@@ -29,7 +29,6 @@ const App = () => {
   const [openCart, setOpenCart] = useState(false);
   const history = useHistory();
   const { isLoggedIn, cartAccess } = useContext(CartContext);
-  
 
   const openCartHandler = useCallback(() => {
     if (isLoggedIn) {
@@ -56,15 +55,17 @@ const App = () => {
   return (
     <Fragment>
       <Header onOpenCart={openCartHandler} />
-      
+
       <Suspense fallback={<LoadingSpinner />}>
         <Switch>
-          <Route path="/store">
+          <Route path="/store" exact>
             {isLoggedIn && <ProductList />}
             {openCart && <Cart onCloseCart={closeCartHandler} />}
             {!isLoggedIn && <Redirect to="/login" />}
           </Route>
-
+          <Route path="/store/:productId">
+            <ProductDetail />
+          </Route>
           <Route path="/about">
             <About />
           </Route>
@@ -74,9 +75,7 @@ const App = () => {
           <Route path="/contact">
             <Contact />
           </Route>
-          <Route path="/store/:productId">
-            <ProductDetail />
-          </Route>
+
           {!isLoggedIn && (
             <Route path="/login">
               <Login />
