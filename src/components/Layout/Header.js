@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Container, Navbar, Button} from "react-bootstrap";
+import { Container, Navbar, Button } from "react-bootstrap";
 import classes from "./Header.module.css";
 import CartContext from "../../store/cart-context";
 import { NavLink } from "react-router-dom";
@@ -19,16 +19,20 @@ const Header = (props) => {
           <NavLink activeClassName={classes.active} to="/about">
             About
           </NavLink>
-          {!ctx.isLoggedIn && <NavLink activeClassName={classes.active} to="/store">
-            Login
-          </NavLink>}
-          {ctx.isLoggedIn && <button  onClick={ctx.logout}>Logout</button>}
+          {!ctx.isLoggedIn && (
+            <NavLink activeClassName={classes.active} to="/store">
+              Login
+            </NavLink>
+          )}
+          {ctx.isLoggedIn && <button onClick={ctx.logout}>Logout</button>}
           <NavLink activeClassName={classes.active} to="/contact">
             Contact us
           </NavLink>
-          <Button onClick={props.onOpenCart}>
-            Cart<sup>{ctx.items.length > 0?ctx.items.length:''}</sup>
-          </Button>
+          {ctx.isLoggedIn && (
+            <Button onClick={props.onOpenCart}>
+              Cart<sup>{ctx.items.length > 0 ? ctx.items.length : ""}</sup>
+            </Button>
+          )}
         </Container>
       </Navbar>
       <div className={classes.heading}>

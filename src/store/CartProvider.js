@@ -9,7 +9,7 @@ const CartProvider = (props) => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const APIKEY = "e23c5e9056fe4f3d8d2c96787602baed";
+  const APIKEY = "9b9eae3fb3d54e9180908a1395e3cc2c";
 
   useEffect(() => {
     const loginToken = localStorage.getItem("token");
